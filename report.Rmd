@@ -5,26 +5,24 @@ date: "February 26, 2018"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+## Question 1
 
-## R Markdown
+The map is produced with this code:
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+//TODO: insert here
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+The map is created by extracting all unique indigenous population along with its latitude and longitude. By the means of the maps library we draw the map with the populations in its location, using 9 different colors and three different symbols.
 
-```{r cars}
-summary(cars)
-```
+## Question 2
 
-## Including Plots
+Performing the linear regression:
 
-You can also embed plots, for example:
+// TODO: insert code here
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+R can not invert the matrix to solve te linear regression problem, because of the size of the matrix. Thus, it explains why the lieanr regression summary is full of Not A Number. In order to have a correct model, we could take a subset of the predictors using this command:
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+//TODO: insert code here
+
+In the following questions, we are going to use PCA.
+
+## Question 3
