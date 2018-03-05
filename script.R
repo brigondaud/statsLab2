@@ -46,3 +46,8 @@ for (i in 1:npop) {
 }
 legend("bottomleft",legend=names,col=colPalette,lty=-1,pch=pch,cex=.75,ncol=2,lwd=2)
 map("world",add=T)
+# values <- which(NAm[,3]==names[i])
+m1 <- matrix(c(lmlong$fitted.values, lmlat$fitted.values), ncol = 2, byrow = FALSE)
+m2 <- matrix(c(NAm2$long, NAm2$lat), ncol=2)
+dist <- fields::rdist.earth(m1, m2, miles=FALSE)
+mea <- mean(diag(dist))
