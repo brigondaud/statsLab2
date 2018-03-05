@@ -18,4 +18,6 @@ y <- lm(long ~ ., data = NAaux) # NAaux[, c(1:3)]
 summary(y)
 #sink()
 
+prcomp(rank=2, NAm2[,-c(1:8)])
+
 # Look at : https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues
