@@ -22,7 +22,7 @@ prcomp(rank=2, NAm2[,-c(1:8)])
 
 # Look at : https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues
 
-pcaNAm2 = prcomp(NAm2[,-c(1:8)])
+pcaNAm2 = prcomp(NAm2[,-c(1:8)], scale=TRUE)
 
 caxes=c(1,2)
 plot(pcaNAm2$x[,caxes],col="white")
