@@ -21,3 +21,15 @@ summary(y)
 prcomp(rank=2, NAm2[,-c(1:8)])
 
 # Look at : https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues
+
+pcaNAm2 = prcomp(NAm2[,-c(1:8)])
+
+caxes=c(1,2)
+plot(pcaNAm2$x[,caxes],col="white")
+for (i in 1:npop) {
+  print(names[i])
+  lines(pcaNAm2$x[which(NAm2[,3]==names[i]),caxes],
+        type="p",col=colPalette[i],pch=pch[i])
+}
+legend("bottomleft",legend=names,col=colPalette,lty=-
+         1,pch=pch,cex=.75,ncol=3,lwd=2)
