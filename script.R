@@ -33,3 +33,16 @@ for (i in 1:npop) {
 }
 legend("bottomleft",legend=names,col=colPalette,lty=-
          1,pch=pch,cex=.75,ncol=3,lwd=2)
+
+#Question 4
+latlongaxes=c(1:250)
+lmlat <- lm(NAm2$lat~pcaNAm2$x[,latlongaxes])
+lmlong <- lm(NAm2$long~pcaNAm2$x[,latlongaxes])
+plot(lmlong$fitted.values,lmlat$fitted.values,col="white", asp=1)
+for (i in 1:npop) {
+  print(names[i])
+  lines(lmlong$fitted.values[which(NAm2[,3]==names[i])],lmlat$fitted.values[which(NAm2[,3]==names[i])],type="p",col=colPalette[i],pch=pch[i]
+  )
+}
+legend("bottomleft",legend=names,col=colPalette,lty=-1,pch=pch,cex=.75,ncol=2,lwd=2)
+map("world",add=T)

@@ -56,3 +56,5 @@ The 5th and th 6th axes separate more the populations (Pima, Karitiana) compared
 In order to have the percentages, we use the command:
 //TODO: insert code here
 The first two principal components capture $3.4%$ of the variance.
+
+## Question 4
