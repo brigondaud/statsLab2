@@ -51,3 +51,8 @@ legend("bottomleft",legend=names,col=colPalette,lty=-
 
 The graph maps the weight of each genetic samples regarding the two first components of the PCA. We can see that these two first components gathers all the members of a population, but gathers also all the population around the same area.
 The 5th and th 6th axes separate more the populations (Pima, Karitiana) compared to the two first axes.
+
+### d)
+In order to have the percentages, we use the command:
+//TODO: insert code here
+The first two principal components capture $3.4%$ of the variance.
