@@ -22,9 +22,9 @@ prcomp(rank=2, NAm2[,-c(1:8)])
 
 # Look at : https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues
 
-pcaNAm2 = prcomp(NAm2[,-c(1:8)])
+pcaNAm2 = prcomp(NAm2[,-c(1:8)], scale=TRUE)
 
-caxes=c(1,2)
+caxes=c(5,6)
 plot(pcaNAm2$x[,caxes],col="white")
 for (i in 1:npop) {
   print(names[i])
@@ -33,3 +33,18 @@ for (i in 1:npop) {
 }
 legend("bottomleft",legend=names,col=colPalette,lty=-
          1,pch=pch,cex=.75,ncol=3,lwd=2)
+
+prop = summary(pcaNAm2)$importance[2,]
+res = rep(0, 494)
+x=0
+for (i in 1:494) {
+  x = x + prop[i]
+  res[i] = x - i/494
+}
+
+plot(c(1:494), res, type="l")
+i = which(res == max(res))
+i
+res[i] + i/494
+
+sample(c(rep(0:9, each=49),1,2,3,4))
