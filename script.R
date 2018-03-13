@@ -47,4 +47,24 @@ i = which(res == max(res))
 i
 res[i] + i/494
 
+
+#Question 4
+latlongaxes=c(1:250)
+lmlat <- lm(NAm2$lat~pcaNAm2$x[,latlongaxes])
+lmlong <- lm(NAm2$long~pcaNAm2$x[,latlongaxes])
+plot(lmlong$fitted.values,lmlat$fitted.values,col="white", asp=1)
+for (i in 1:npop) {
+  print(names[i])
+  lines(lmlong$fitted.values[which(NAm2[,3]==names[i])],lmlat$fitted.values[which(NAm2[,3]==names[i])],type="p",col=colPalette[i],pch=pch[i]
+  )
+}
+legend("bottomleft",legend=names,col=colPalette,lty=-1,pch=pch,cex=.75,ncol=2,lwd=2)
+map("world",add=T)
+# values <- which(NAm[,3]==names[i])
+m1 <- matrix(c(lmlong$fitted.values, lmlat$fitted.values), ncol = 2, byrow = FALSE)
+m2 <- matrix(c(NAm2$long, NAm2$lat), ncol=2)
+dist <- fields::rdist.earth(m1, m2, miles=FALSE)
+mea <- mean(diag(dist))
+
 sample(c(rep(0:9, each=49),1,2,3,4))
+
