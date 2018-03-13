@@ -41,7 +41,6 @@ pcaNAm2 = prcomp(NAm2[,-c(1:8)], scale=TRUE)
 caxes=c(1,2)
 plot(pcaNAm2$x[,caxes],col="white")
 for (i in 1:npop) {
-  print(names[i])
   lines(pcaNAm2$x[which(NAm2[,3]==names[i]),caxes],
         type="p",col=colPalette[i],pch=pch[i])
 }
@@ -65,3 +64,10 @@ The first two principal components capture $3.4%$ of the variance.
 Comparing with the first map, we can see that the population are well located and well centered around the expected position based on training data. But the map illustrate too optimistically the ability to locate people according to their genetic material. In fact we tested our model with the training data.
 
 ### b)
+
+## Question 5
+
+### a)
+The cross validation method consists into dividing our data in a training set and a test set. The optimisation of the prediction method is made with the training set and its validity is mesured with the training set. It is possible to do it once or multiple times by dividing the data in different ways.
+This method is interesting to build a predictive model because it allows you to test your model on data no used to train it. Indeed test your model with the training data is really thwart.
+  
