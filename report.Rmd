@@ -100,11 +100,25 @@ Using this function, we would use $190$ principal components.
 ## Question 4
 
 ### a)
-// TODO: insert code here
+
+```{r}
+latlongaxes=c(1:250)
+lmlat <- lm(NAm2$lat~pcaNAm2$x[,latlongaxes])
+lmlong <- lm(NAm2$long~pcaNAm2$x[,latlongaxes])
+plot(lmlong$fitted.values,lmlat$fitted.values,col="white", asp=1)
+for (i in 1:npop) {
+  lines(lmlong$fitted.values[which(NAm2[,3]==names[i])],lmlat$fitted.values[which(NAm2[,3]==names[i])],type="p",col=colPalette[i],pch=pch[i]
+  )
+}
+legend("bottomleft",legend=names,col=colPalette,lty=-1,pch=pch,cex=.75,ncol=2,lwd=2)
+map("world",add=T)
+```
 
 Comparing with the first map, we can see that the population are well located and well centered around the expected position based on training data. But the map illustrate too optimistically the ability to locate people according to their genetic material. In fact we tested our model with the training data.
 
 ### b)
+
+
 
 ## Question 5
 
