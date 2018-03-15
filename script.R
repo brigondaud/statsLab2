@@ -66,5 +66,10 @@ m2 <- matrix(c(NAm2$long, NAm2$lat), ncol=2)
 dist <- fields::rdist.earth(m1, m2, miles=FALSE)
 mea <- mean(diag(dist))
 
-sample(c(rep(0:9, each=49),1,2,3,4))
-
+set = sample(c(rep(0:9, each=49),1,2,3,4))
+naxes = 4
+#b1
+predictedCoord = data.frame(matrix(ncol=2, nrow=length(set)))
+colnames(predictedCoord) <- c("longitude", "latitude")
+#b2
+#pcalong=data.frame(cbind(long=NAm2[,c("long")],pcaNAm2$x))

@@ -131,10 +131,18 @@ We can see that the population are predicted with a mean error of arround $476$k
 ## Question 5
 
 ### a)
+
 The cross validation method consists into dividing our data in a training set and a test set. The optimisation of the prediction method is made with the training set and its validity is mesured with the training set. It is possible to do it once or multiple times by dividing the data in different ways.
 This method is interesting to build a predictive model because it allows you to test your model on data no used to train it. Indeed test your model with the training data is really thwart.
 
 ### b)
 
+The index of subset can be created like this:
 
-  
+```{r}
+set = sample(c(rep(0:9, each=49),1,2,3,4))
+
+```
+
+#### 1)
+
