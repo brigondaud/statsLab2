@@ -77,7 +77,25 @@ In order to have the percentages, we use the command:
 prop = summary(pcaNAm2)$importance[2,]
 prop["PC1"] + prop["PC2"]
 ```
+
 The first two principal components capture $3.4$% of the variance.
+The number of principle components that we want to keep in order to explain the data depends on the percentage of the variance we want to explain, and the importance that we give on taking more components to explain a bigger part of the variance.
+The script below computes the number of components we would keep to explain the data, using a function that computes the total variance explained by taking $i$ components, minus the percentage of components used to explain the data ($\frac{i}{494}$), $\forall i \in \{1, ..., 494\}$.
+
+```{r}
+res = rep(0, 494)
+x=0
+for (i in 1:494) {
+  x = x + prop[i]
+  res[i] = x - i/494
+}
+
+plot(c(1:494), res, type="l")
+i = which(res == max(res))
+i
+```
+
+Using this function, we would use $190$ principal components.
 
 ## Question 4
 
