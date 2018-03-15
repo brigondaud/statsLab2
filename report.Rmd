@@ -1,5 +1,5 @@
 ---
-title: "report"
+title: "Report - TP2"
 author: "Jose Munoz Angulo, Vivien Marcault, Baptiste Rigondaud"
 date: "February 26, 2018"
 output: html_document
@@ -118,11 +118,23 @@ Comparing with the first map, we can see that the population are well located an
 
 ### b)
 
+```{r}
+m1 <- matrix(c(lmlong$fitted.values, lmlat$fitted.values), ncol = 2, byrow = FALSE)
+m2 <- matrix(c(NAm2$long, NAm2$lat), ncol=2)
+dist <- fields::rdist.earth(m1, m2, miles=FALSE)
+mea <- mean(diag(dist))
+mea
+```
 
+We can see that the population are predicted with a mean error of arround $476$km.
 
 ## Question 5
 
 ### a)
 The cross validation method consists into dividing our data in a training set and a test set. The optimisation of the prediction method is made with the training set and its validity is mesured with the training set. It is possible to do it once or multiple times by dividing the data in different ways.
 This method is interesting to build a predictive model because it allows you to test your model on data no used to train it. Indeed test your model with the training data is really thwart.
+
+### b)
+
+
   

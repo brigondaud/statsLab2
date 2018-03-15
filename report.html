@@ -219,6 +219,13 @@ map(&quot;world&quot;,add=T)</code></pre>
 </div>
 <div id="b-1" class="section level3">
 <h3>b)</h3>
+<pre class="r"><code>m1 &lt;- matrix(c(lmlong$fitted.values, lmlat$fitted.values), ncol = 2, byrow = FALSE)
+m2 &lt;- matrix(c(NAm2$long, NAm2$lat), ncol=2)
+dist &lt;- fields::rdist.earth(m1, m2, miles=FALSE)
+mea &lt;- mean(diag(dist))
+mea</code></pre>
+<pre><code>## [1] 476.437</code></pre>
+<p>We can see that the population are predicted with a mean error of arround <span class="math inline">\(476\)</span>km.</p>
 </div>
 </div>
 <div id="question-5" class="section level2">
@@ -226,6 +233,9 @@ map(&quot;world&quot;,add=T)</code></pre>
 <div id="a-2" class="section level3">
 <h3>a)</h3>
 <p>The cross validation method consists into dividing our data in a training set and a test set. The optimisation of the prediction method is made with the training set and its validity is mesured with the training set. It is possible to do it once or multiple times by dividing the data in different ways. This method is interesting to build a predictive model because it allows you to test your model on data no used to train it. Indeed test your model with the training data is really thwart.</p>
+</div>
+<div id="b-2" class="section level3">
+<h3>b)</h3>
 </div>
 </div>
 
