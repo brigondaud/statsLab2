@@ -67,9 +67,28 @@ dist <- fields::rdist.earth(m1, m2, miles=FALSE)
 mea <- mean(diag(dist))
 
 set = sample(c(rep(0:9, each=49),1,2,3,4))
-naxes = 4
+naxes = 80
 #b1
 predictedCoord = data.frame(matrix(ncol=2, nrow=length(set)))
 colnames(predictedCoord) <- c("longitude", "latitude")
+
+pcalong=data.frame(cbind(long=NAm2[,c("long")],pcaNAm2$x[,c(1:naxes)]))
+pcalat=data.frame(cbind(lat=NAm2[,c("lat")],pcaNAm2$x[,c(1:naxes)]))
+
+for (i in 0:9) {
+  lmlat <- lm(lat~ ., dat=pcalat, subset=set != i)
+  lmlong <- lm(long~ ., data = subset(pcalong, set != i))
+  predictedCoord[set == i,] <- cbind(1,pcaNAm2$x[set == i, c(1:naxes)]) %*% cbind( lmlong$coefficients,lmlat$coefficients)
+}
+plot(NAm2[set == 1,c("long", "lat")],col="white", asp=1)
+lines(predictedCoord[],type="p")
+lines(NAm2[set == 1,c("long", "lat")], type="p", col="red")
+map("world",add=T)
+
+m1 <- matrix(predictedCoord, ncol = 2)
+m2 <- matrix(c(NAm2$long, NAm2$lat)[set == 1], ncol=2)
+dist <- fields::rdist.earth(m1, m2, miles=FALSE)
+mea <- mean(diag(dist))
+
 #b2
 #pcalong=data.frame(cbind(long=NAm2[,c("long")],pcaNAm2$x))
