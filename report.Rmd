@@ -206,3 +206,11 @@ plot(seq(2,440,by=10), res, type="l", main = "Prediction error according to the 
 
 #### 1)
 
+## Question 6
+
+The linear model approach is a good starting point, but there are some cases in which it doesn't work correctly. Sometimes, the data that needs to be analyzed contains many more attributes than observations. This causes the linear model to break, as it cannot be created properly. For these problems we can use different methods that will yield results that might be good but also some that might be lacking in quality.
+
+The first approach is to only take a subset of the parameters can be used to create a linear model, but it is a naive method and the model is not accurate enough to be useful. A method that can help create a better model is Principal Components Analysis or PCA. This technique helps us reduce the number of parameters separating them on components that can be used in a model as if it were the parameters. PCA improves the quality of predictors compared to the previous approach.
+
+Creating a 2D representation of the result after PCA separates a part of the population but most of it is grouped together. This makes sense given that the first two components, those with the higher explained variance, only explain 3.4% of it. So, more components are needed to have a better model but trying simultaneously to keep the number of components to a minimum. This number is the one that have the best accumulated explained variance - number of components used ratio, i.e., 190 components. Using 250 components, the generated model creates that predicts well the location of the population according to the genetic material, with a mean error of approximately 476km.
+
