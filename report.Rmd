@@ -141,8 +141,58 @@ The index of subset can be created like this:
 
 ```{r}
 set = sample(c(rep(0:9, each=49),1,2,3,4))
+naxes = 4
+#b1
+predictedCoord = data.frame(matrix(ncol=2, nrow=length(set)))
+colnames(predictedCoord) <- c("longitude", "latitude")
+
+pcalong=data.frame(cbind(long=NAm2[,c("long")],pcaNAm2$x[,c(1:naxes)]))
+pcalat=data.frame(cbind(lat=NAm2[,c("lat")],pcaNAm2$x[,c(1:naxes)]))
+pca=pcaNAm2$x[,c(1:naxes)]
+
+for (i in 0:9) {
+  lmlat <- lm(lat~ ., dat=pcalat, subset=set != i)
+  lmlong <- lm(long~ ., data = subset(pcalong, set != i))
+  predictedCoord[set == i,"latitude"] <- predict(lmlat, data.frame(subset(pca, set == i)))
+  predictedCoord[set == i,"longitude"] <- predict(lmlong, data.frame(subset(pca, set == i)))
+}
+m1 <- matrix(c(predictedCoord[,"longitude"], predictedCoord[,"latitude"]), ncol=2)
+m2 <- matrix(c(NAm2$long, NAm2$lat), ncol=2)
+dist <- fields::rdist.earth(m1, m2, miles=FALSE)
+error <- mean(diag(dist))
 
 ```
+
+```{r}
+
+cross.validation <- function(naxes) {
+  set = sample(c(rep(0:9, each=49),1,2,3,4))
+  #b1
+  predictedCoord = data.frame(matrix(ncol=2, nrow=length(set)))
+  colnames(predictedCoord) <- c("longitude", "latitude")
+  
+  pcalong=data.frame(cbind(long=NAm2[,c("long")],pcaNAm2$x[,c(1:naxes)]))
+  pcalat=data.frame(cbind(lat=NAm2[,c("lat")],pcaNAm2$x[,c(1:naxes)]))
+  pca=pcaNAm2$x[,c(1:naxes)]
+  
+  for (i in 0:9) {
+    lmlat <- lm(lat~ ., dat=pcalat, subset=set != i)
+    lmlong <- lm(long~ ., data = subset(pcalong, set != i))
+    predictedCoord[set == i,"latitude"] <- predict(lmlat, data.frame(subset(pca, set == i)))
+    predictedCoord[set == i,"longitude"] <- predict(lmlong, data.frame(subset(pca, set == i)))
+  }
+  m1 <- matrix(c(predictedCoord[,"longitude"], predictedCoord[,"latitude"]), ncol=2)
+  m2 <- matrix(c(NAm2$long, NAm2$lat), ncol=2)
+  dist <- fields::rdist.earth(m1, m2, miles=FALSE)
+  return(mean(diag(dist)))
+}
+res <- NULL
+for (i in seq(2,440,by=10)) {
+  res <- c(res, cross.validation(i))
+}
+plot(seq(2,440,by=10), res, type="l")
+```
+
 
 #### 1)
 
